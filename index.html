@@ -1,1067 +1,1155 @@
 <!DOCTYPE html>
-
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="html">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Legal Compass - استشارات قانونية متخصصة لشركات التقنية المالية (فينتك) والتقنية والاستثمار في المملكة العربية السعودية"/>
-<title>Legal Compass | البوصلة القانونية</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
-<style>
-/* ============================================================
-   RESET & ROOT
-============================================================ */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; font-size:16px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البوصلة القانونية - Legal Compass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-:root {
-–bg:        #ffffff;
-–bg2:       #fafafa;
-–bg3:       #f2f2f2;
-–bg4:       #e0e0e0;
-–blue:      #007AFF;
-–blue2:     #3395FF;
-–blue-dim:  rgba(0,122,255,0.12);
-–blue-line: rgba(0,122,255,0.25);
-–white:     #1a1a1a;
-–off:       #333333;
-–muted:     #666;
-–muted2:    #888;
-–gold:      #c9a84c;
-–radius:    20px;
-–radius-sm: 12px;
-}
+        :root {
+            --primary: #1a472a;
+            --primary-light: #2d6a3f;
+            --primary-lighter: #4a8f54;
+            --accent: #d4a574;
+            --accent-dark: #b8945c;
+            --dark: #0f1419;
+            --light: #f7f5f2;
+            --gray: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+        }
 
-body {
-font-family: ‘IBM Plex Sans Arabic’, ‘IBM Plex Sans’, sans-serif;
-background: var(–bg);
-color: var(–white);
-overflow-x: hidden;
-line-height: 1.6;
-}
+        body {
+            color: var(--dark);
+            background: var(--light);
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
 
-/* Focus indicator - WCAG AA */
-:focus-visible {
-outline: 2px solid var(–blue);
-outline-offset: 3px;
-border-radius: 4px;
-}
+        body.ar {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
 
-/* Skip to content - Accessibility */
-.skip-link {
-position: absolute;
-top: -100%;
-right: 0;
-padding: 12px 24px;
-background: var(–blue);
-color: white;
-font-size: 0.9rem;
-z-index: 9999;
-border-radius: 0 0 var(–radius-sm) var(–radius-sm);
-transition: top 0.3s;
-}
-.skip-link:focus { top: 0; }
+        body.en {
+            font-family: 'Poppins', sans-serif;
+            direction: ltr;
+        }
 
-/* ============================================================
-GRAIN OVERLAY
-============================================================ */
-body::after {
-content:’’;
-position:fixed;inset:0;
-pointer-events:none;z-index:998;
-opacity:0.015;
-background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘300’ height=‘300’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.75’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘300’ height=‘300’ filter=‘url(%23n)’/%3E%3C/svg%3E”);
-}
+        body.en #html {
+            direction: ltr;
+            lang: en;
+        }
 
-/* ============================================================
-NAVBAR - Glassmorphism
-============================================================ */
-.navbar {
-position: fixed; top: 0; width: 100%; z-index: 200;
-padding: 0 48px;
-height: 68px;
-display: flex; align-items: center; justify-content: space-between;
-background: rgba(255,255,255,0.8);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border-bottom: 1px solid rgba(0,0,0,0.08);
-transition: background 0.3s;
-}
-.navbar.scrolled {
-background: rgba(255,255,255,0.96);
-}
+        /* Language-specific text visibility */
+        .ar-text { display: block; }
+        .en-text { display: none; }
 
-.nav-brand {
-display: flex; align-items: center; gap: 12px;
-text-decoration: none;
-}
-.nav-logo-mark {
-width: 38px; height: 38px;
-background: var(–blue);
-border-radius: 10px;
-display: flex; align-items: center; justify-content: center;
-font-size: 0.85rem; font-weight: 700; color: white;
-letter-spacing: 0.5px;
-flex-shrink: 0;
-}
-.nav-brand-text {
-font-size: 1rem; font-weight: 600; color: var(–white);
-line-height: 1.1;
-}
-.nav-brand-sub {
-font-size: 0.6rem; color: var(–muted); letter-spacing: 2px;
-text-transform: uppercase;
-}
+        body.en .ar-text { display: none; }
+        body.en .en-text { display: block; }
 
-.nav-links {
-display: flex; align-items: center; gap: 8px;
-list-style: none;
-}
-.nav-links a {
-padding: 8px 16px;
-font-size: 0.82rem; color: var(–muted);
-text-decoration: none; border-radius: var(–radius-sm);
-transition: all 0.2s;
-}
-.nav-links a:hover { color: var(–white); background: rgba(255,255,255,0.06); }
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
 
-.nav-cta {
-padding: 10px 24px !important;
-background: var(–blue) !important;
-color: white !important;
-font-weight: 500;
-border-radius: var(–radius-sm) !important;
-transition: all 0.2s !important;
-}
-.nav-cta:hover { background: var(–blue2) !important; transform: translateY(-1px); }
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* Hamburger */
-.hamburger {
-display: none;
-flex-direction: column; gap: 5px;
-background: none; border: none; cursor: pointer;
-padding: 8px; border-radius: 8px;
-}
-.hamburger span {
-width: 24px; height: 2px;
-background: var(–white);
-border-radius: 2px;
-transition: all 0.3s;
-display: block;
-}
-.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
 
-.mobile-menu {
-display: none;
-position: fixed; top: 68px; left: 0; right: 0;
-background: rgba(255,255,255,0.98);
-backdrop-filter: blur(20px);
-padding: 24px 24px 32px;
-border-bottom: 1px solid rgba(0,0,0,0.08);
-z-index: 190;
-}
-.mobile-menu.open { display: block; }
-.mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.mobile-menu ul a {
-display: block; padding: 14px 16px;
-color: #333; text-decoration: none; font-size: 1rem;
-border-radius: var(–radius-sm);
-transition: background 0.2s;
-}
-.mobile-menu ul a:hover { background: rgba(255,255,255,0.06); }
-.mobile-menu .m-cta {
-display: block; margin-top: 16px; padding: 16px;
-background: var(–blue); color: white; text-align: center;
-border-radius: var(–radius-sm); font-weight: 600; text-decoration: none;
-}
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: -0.3rem;
+        }
 
-/* ============================================================
-HERO
-============================================================ */
-.hero {
-min-height: 100vh;
-padding: 120px 48px 80px;
-display: flex; flex-direction: column;
-justify-content: center;
-position: relative; overflow: hidden;
-}
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-/* Animated background grid */
-.hero-grid {
-position: absolute; inset: 0; pointer-events: none;
-background-image:
-linear-gradient(rgba(0,122,255,0.04) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,122,255,0.04) 1px, transparent 1px);
-background-size: 60px 60px;
-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-}
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
 
-/* Glow blobs */
-.blob {
-position: absolute; border-radius: 50%;
-filter: blur(80px); pointer-events: none;
-}
-.blob-1 {
-width: 500px; height: 500px;
-background: rgba(0,122,255,0.06);
-top: -100px; left: -100px;
-}
-.blob-2 {
-width: 400px; height: 400px;
-background: rgba(201,168,76,0.05);
-bottom: 0; right: 100px;
-}
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
 
-.hero-content { position: relative; z-index: 2; max-width: 800px; }
+        nav a:hover::after {
+            width: 100%;
+        }
 
-.hero-badge {
-display: inline-flex; align-items: center; gap: 10px;
-padding: 8px 18px;
-background: var(–blue-dim);
-border: 1px solid var(–blue-line);
-border-radius: 100px;
-font-size: 0.72rem; color: var(–blue2);
-letter-spacing: 1px; margin-bottom: 36px;
-}
-.hero-badge-dot {
-width: 7px; height: 7px; border-radius: 50%;
-background: #22c55e;
-animation: pulse-dot 2s ease infinite;
-}
-@keyframes pulse-dot {
-0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
-50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(34,197,94,0); }
-}
+        .lang-switch {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            white-space: nowrap;
+        }
 
-.hero h1 {
-font-size: clamp(2.4rem, 5.5vw, 5rem);
-font-weight: 700; line-height: 1.1;
-color: var(–white); margin-bottom: 16px;
-letter-spacing: -1px;
-}
-.hero h1 .highlight {
-background: linear-gradient(135deg, var(–blue), var(–blue2));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-}
+        .lang-switch:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
 
-.hero-ar {
-font-size: clamp(1rem, 2.5vw, 1.5rem);
-font-weight: 300; color: var(–muted);
-margin-bottom: 28px;
-}
+        .cta-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
 
-.hero-desc {
-font-size: 1.05rem; font-weight: 300;
-line-height: 1.85; color: rgba(232,232,232,0.65);
-max-width: 580px; margin-bottom: 48px;
-}
+        .cta-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 71, 42, 0.15);
+        }
 
-.hero-actions {
-display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
-}
-.btn-primary {
-display: inline-flex; align-items: center; gap: 10px;
-padding: 16px 36px;
-background: var(–blue); color: white;
-font-size: 0.9rem; font-weight: 600;
-border-radius: var(–radius-sm); text-decoration: none;
-transition: all 0.3s; border: none; cursor: pointer;
-}
-.btn-primary:hover { background: var(–blue2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,122,255,0.3); }
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(26, 71, 42, 0.03) 0%, rgba(212, 165, 116, 0.03) 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-.btn-ghost {
-display: inline-flex; align-items: center; gap: 10px;
-padding: 16px 36px;
-background: transparent; color: var(–off);
-font-size: 0.9rem; font-weight: 400;
-border-radius: var(–radius-sm); text-decoration: none;
-border: 1px solid rgba(255,255,255,0.1);
-transition: all 0.3s;
-}
-.btn-ghost:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(45, 106, 63, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
 
-/* Hero stats */
-.hero-stats {
-display: flex; gap: 48px;
-margin-top: 72px; padding-top: 48px;
-border-top: 1px solid rgba(0,0,0,0.07);
-}
-.hstat-num {
-font-size: 2.8rem; font-weight: 700;
-color: var(–white); display: block; line-height: 1;
-letter-spacing: -1px;
-}
-.hstat-num span { color: var(–blue); }
-.hstat-label {
-font-size: 0.72rem; color: var(–muted);
-letter-spacing: 1px; margin-top: 6px;
-}
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
 
-/* ============================================================
-SECTION BASE
-============================================================ */
-.section { padding: 100px 48px; }
-.section-inner { max-width: 1200px; margin: 0 auto; }
+        .badge {
+            display: inline-block;
+            background: rgba(212, 165, 116, 0.1);
+            color: var(--accent-dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+        }
 
-.eyebrow {
-display: inline-flex; align-items: center; gap: 10px;
-font-size: 0.68rem; font-weight: 500;
-letter-spacing: 4px; text-transform: uppercase; color: var(–blue);
-margin-bottom: 20px;
-}
-.eyebrow::before { content:’’; width:24px; height:2px; background:var(–blue); border-radius:2px; }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+        }
 
-.section-title {
-font-size: clamp(1.8rem, 3.5vw, 3rem);
-font-weight: 700; line-height: 1.15;
-color: var(–white); letter-spacing: -0.5px;
-margin-bottom: 8px;
-}
-.section-title-ar {
-font-size: clamp(1rem, 2vw, 1.3rem);
-font-weight: 300; color: var(–muted);
-margin-bottom: 56px;
-}
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            line-height: 1.7;
+        }
 
-/* ============================================================
-PROCESS SECTION
-============================================================ */
-.process { background: var(–bg2); }
-.process-grid {
-display: grid; grid-template-columns: repeat(3,1fr);
-gap: 2px; margin-top: 56px;
-background: rgba(255,255,255,0.04);
-border-radius: var(–radius);
-overflow: hidden;
-}
-.process-step {
-background: var(–bg2); padding: 48px 36px;
-position: relative; transition: background 0.3s;
-}
-.process-step:hover { background: var(–bg3); }
-.step-num {
-font-size: 5rem; font-weight: 700;
-color: rgba(0,122,255,0.15); line-height: 1;
-margin-bottom: 24px; letter-spacing: -3px;
-}
-.step-icon {
-width: 48px; height: 48px;
-background: var(–blue-dim); border-radius: 12px;
-display: flex; align-items: center; justify-content: center;
-font-size: 1.3rem; margin-bottom: 20px;
-border: 1px solid var(–blue-line);
-}
-.step-title { font-size: 1.1rem; font-weight: 600; color: var(–white); margin-bottom: 8px; }
-.step-desc { font-size: 0.82rem; line-height: 1.8; color: var(–muted); }
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
 
-/* ============================================================
-SERVICES — Bento Grid
-============================================================ */
-.services { background: var(–bg); }
+        .btn {
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
 
-.bento-grid {
-display: grid;
-grid-template-columns: repeat(12, 1fr);
-grid-template-rows: auto;
-gap: 16px;
-}
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
 
-.bento-card {
-background: var(–bg2);
-border-radius: var(–radius);
-padding: 40px 36px;
-border: 1px solid rgba(0,0,0,0.06);
-transition: all 0.3s;
-position: relative; overflow: hidden;
-}
-.bento-card::before {
-content:’’;
-position: absolute; inset: 0;
-background: linear-gradient(135deg, rgba(0,122,255,0.04), transparent);
-opacity: 0; transition: opacity 0.3s;
-border-radius: var(–radius);
-}
-.bento-card:hover { border-color: rgba(0,122,255,0.2); transform: translateY(-2px); }
-.bento-card:hover::before { opacity: 1; }
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(26, 71, 42, 0.2);
+        }
 
-.bento-card:nth-child(1) { grid-column: span 4; }
-.bento-card:nth-child(2) { grid-column: span 4; }
-.bento-card:nth-child(3) { grid-column: span 4; }
-.bento-card:nth-child(4) { grid-column: span 6; }
-.bento-card:nth-child(5) { grid-column: span 6; }
-.bento-card:nth-child(6) { grid-column: span 12; background: var(–blue-dim); border-color: var(–blue-line); }
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
 
-.bento-card-num {
-font-size: 0.65rem; font-weight: 600; letter-spacing: 3px;
-text-transform: uppercase; color: var(–blue);
-margin-bottom: 20px;
-}
-.bento-card-icon {
-width: 52px; height: 52px;
-background: var(–bg3); border-radius: 14px;
-display: flex; align-items: center; justify-content: center;
-font-size: 1.5rem; margin-bottom: 24px;
-}
-.bento-card:nth-child(6) .bento-card-icon { background: rgba(0,122,255,0.2); }
-.bento-card-en { font-size: 1.1rem; font-weight: 600; color: var(–white); margin-bottom: 4px; }
-.bento-card-ar { font-size: 0.8rem; color: var(–blue2); margin-bottom: 14px; font-weight: 400; }
-.bento-card-desc { font-size: 0.78rem; line-height: 1.8; color: var(–muted); }
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
 
-/* Last card special layout */
-.bento-card:nth-child(6) {
-display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-}
-.bento-card:nth-child(6) .bento-card-text {}
-.bento-card:nth-child(6) .bento-card-cta {
-display: flex; justify-content: flex-end; align-items: center;
-}
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--border);
+            max-width: 1400px;
+        }
 
-/* ============================================================
-PILLARS / STAGES
-============================================================ */
-.pillars { background: var(–bg2); }
-.pillars-grid {
-display: grid; grid-template-columns: repeat(3,1fr);
-gap: 16px; margin-top: 56px;
-}
-.pillar {
-background: var(–bg3);
-border-radius: var(–radius);
-padding: 44px 36px;
-border: 1px solid rgba(0,0,0,0.06);
-transition: all 0.3s;
-position: relative;
-}
-.pillar::after {
-content:’’;
-position:absolute; bottom:0; left:0; right:0; height:3px;
-background: linear-gradient(90deg, var(–blue), var(–blue2));
-border-radius: 0 0 var(–radius) var(–radius);
-transform: scaleX(0); transition: transform 0.4s;
-transform-origin: left;
-}
-.pillar:hover { border-color: rgba(0,122,255,0.15); transform: translateY(-3px); }
-.pillar:hover::after { transform: scaleX(1); }
+        .stat {
+            text-align: center;
+        }
 
-.pillar-phase {
-display: inline-block;
-padding: 5px 14px;
-background: var(–blue-dim); border: 1px solid var(–blue-line);
-border-radius: 100px;
-font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(–blue2);
-margin-bottom: 24px;
-}
-.pillar-title { font-size: 1.4rem; font-weight: 700; color: var(–white); margin-bottom: 24px; }
-.pillar-items { display: flex; flex-direction: column; gap: 12px; }
-.pillar-item {
-display: flex; align-items: flex-start; gap: 12px;
-font-size: 0.82rem; color: var(–muted); line-height: 1.5;
-}
-.pillar-item::before { content:‘→’; color: var(–blue); flex-shrink: 0; margin-top: 1px; }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
 
-/* ============================================================
-WHY
-============================================================ */
-.why { background: var(–bg); }
-.why-grid {
-display: grid; grid-template-columns: repeat(4,1fr);
-gap: 16px; margin-top: 56px;
-}
-.why-card {
-background: var(–bg2); border-radius: var(–radius);
-padding: 36px 28px;
-border: 1px solid rgba(0,0,0,0.06);
-transition: all 0.3s;
-}
-.why-card:hover { border-color: rgba(0,122,255,0.2); background: var(–bg3); }
-.why-icon {
-width: 48px; height: 48px; border-radius: 12px;
-background: var(–blue-dim); border: 1px solid var(–blue-line);
-display: flex; align-items: center; justify-content: center;
-font-size: 1.3rem; margin-bottom: 20px;
-}
-.why-en { font-size: 1rem; font-weight: 600; color: var(–white); margin-bottom: 4px; }
-.why-ar { font-size: 0.78rem; color: var(–blue2); margin-bottom: 12px; }
-.why-desc { font-size: 0.78rem; line-height: 1.8; color: var(–muted); }
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
 
-/* ============================================================
-CONTACT
-============================================================ */
-.contact { background: var(–bg2); }
-.contact-inner {
-max-width: 800px; margin: 0 auto; text-align: center;
-}
-.contact-card {
-background: var(–bg3); border-radius: var(–radius);
-padding: 64px; margin-top: 48px;
-border: 1px solid rgba(0,122,255,0.15);
-position: relative; overflow: hidden;
-}
-.contact-card::before {
-content:’’;
-position:absolute; top:-100px; left:50%; transform:translateX(-50%);
-width:400px; height:400px;
-background: radial-gradient(circle, rgba(0,122,255,0.08), transparent 70%);
-pointer-events:none;
-}
-.contact-num {
-font-size: clamp(2rem,5vw,3.5rem);
-font-weight: 700; letter-spacing: -1px;
-color: var(–white); text-decoration: none;
-display: block; margin-bottom: 8px;
-transition: color 0.3s;
-}
-.contact-num:hover { color: var(–blue2); }
-.contact-label {
-font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
-color: var(–muted); margin-bottom: 8px;
-}
-.contact-email {
-font-size: 0.9rem; color: var(–muted);
-text-decoration: none; display: block;
-margin-bottom: 48px; transition: color 0.3s;
-}
-.contact-email:hover { color: var(–blue2); }
-.contact-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        /* ===== SECTION GENERAL ===== */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-/* ============================================================
-FOOTER
-============================================================ */
-footer {
-padding: 28px 48px;
-background: var(–bg);
-border-top: 1px solid rgba(0,0,0,0.08);
-display: flex; justify-content: space-between; align-items: center;
-flex-wrap: wrap; gap: 12px;
-}
-.footer-brand {
-display: flex; align-items: center; gap: 10px;
-text-decoration: none;
-}
-.footer-brand-name { font-size: 0.9rem; font-weight: 600; color: var(–white); }
-.footer-copy { font-size: 0.68rem; color: #777; }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
 
-/* ============================================================
-WA FLOAT
-============================================================ */
-.wa-float {
-position: fixed; bottom: 28px; left: 28px; z-index: 300;
-width: 54px; height: 54px;
-background: #25D366; border-radius: 50%;
-display: flex; align-items: center; justify-content: center;
-box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-text-decoration: none; transition: all 0.3s;
-}
-.wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.55); }
-.wa-float svg { width: 26px; height: 26px; fill: white; }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
 
-/* ============================================================
-RESPONSIVE
-============================================================ */
-@media(max-width:1024px) {
-.navbar { padding: 0 24px; }
-.nav-links { display: none; }
-.hamburger { display: flex; }
-.hero { padding: 100px 24px 60px; }
-.section { padding: 70px 24px; }
-.bento-grid { grid-template-columns: 1fr 1fr; }
-.bento-card:nth-child(n) { grid-column: span 1; }
-.bento-card:nth-child(6) { grid-column: span 2; display: block; }
-.bento-card:nth-child(6) .bento-card-cta { margin-top: 24px; justify-content: flex-start; }
-.pillars-grid { grid-template-columns: 1fr; }
-.why-grid { grid-template-columns: repeat(2,1fr); }
-.process-grid { grid-template-columns: 1fr; }
-footer { padding: 20px 24px; }
-.hero-stats { gap: 24px; }
-}
-@media(max-width:640px) {
-.bento-grid { grid-template-columns: 1fr; }
-.bento-card:nth-child(n) { grid-column: span 1 !important; }
-.why-grid { grid-template-columns: 1fr; }
-.hero h1 { letter-spacing: -0.5px; }
-.hero-stats { flex-direction: column; gap: 16px; }
-.contact-card { padding: 36px 24px; }
-}
+        /* ===== PROCESS SECTION ===== */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
 
-/* ============================================================
-ANIMATIONS
-============================================================ */
-@keyframes fadeUp {
-from { opacity:0; transform:translateY(24px); }
-to   { opacity:1; transform:translateY(0); }
-}
-.hero-badge    { animation: fadeUp 0.8s ease both; }
-.hero h1       { animation: fadeUp 0.8s ease 0.1s both; }
-.hero-ar       { animation: fadeUp 0.8s ease 0.2s both; }
-.hero-desc     { animation: fadeUp 0.8s ease 0.3s both; }
-.hero-actions  { animation: fadeUp 0.8s ease 0.4s both; }
-.hero-stats    { animation: fadeUp 0.8s ease 0.55s both; }
+        .process-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Light mode overrides */
-.nav-brand-text { color: #1a1a1a !important; }
-.hamburger span { background: #1a1a1a !important; }
-.nav-links a { color: #555 !important; }
-.nav-links a:hover { color: #1a1a1a !important; background: rgba(0,0,0,0.05) !important; }
-.hero-stats { border-top: 1px solid rgba(0,0,0,0.08) !important; }
-.contact-num { color: #1a1a1a !important; }
-.process-step { background: #f5f5f7 !important; }
-.process-step:hover { background: #ebebeb !important; }
-.bento-card-icon { background: #ebebeb !important; }
-.why-card:hover { background: #ebebeb !important; }
-.contact-card { background: #0f0f0f !important; border-color: rgba(0,122,255,0.3) !important; box-shadow: 0 8px 40px rgba(0,0,0,0.15) !important; }
-footer { background: #f5f5f7 !important; }
-.footer-brand-name { color: #1a1a1a !important; }
-.footer-copy { color: #888 !important; }
-.mobile-menu ul a { color: #333 !important; }
-.hstat-num { color: #1a1a1a !important; }
-.section-title { color: #1a1a1a !important; }
-.step-title { color: #1a1a1a !important; }
-.bento-card-en { color: #1a1a1a !important; }
-.why-en { color: #1a1a1a !important; }
-.pillar-title { color: #1a1a1a !important; }
-.hero h1 { color: #1a1a1a !important; }
-.nav-brand-sub { color: #888 !important; }
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
 
-.contact-card .contact-num { color: #ffffff !important; }
-.contact-card .contact-label { color: rgba(255,255,255,0.5) !important; }
-.contact-card .contact-email { color: rgba(255,255,255,0.5) !important; }
-.contact-card .contact-email:hover { color: #3395FF !important; }
-.contact-card .contact-num:hover { color: #3395FF !important; }
-.contact-card .btn-ghost { color: #ffffff !important; border-color: rgba(255,255,255,0.2) !important; }
-.contact-card .btn-ghost:hover { background: rgba(255,255,255,0.08) !important; }
+        .process-card:hover::before {
+            transform: scaleX(1);
+        }
 
-/* Hero fixes */
-.hero { background: #ffffff !important; }
-.hero h1 { color: #1a1a1a !important; }
-.hero-ar { color: #666 !important; }
-.hero-desc { color: #444 !important; }
-.hstat-num { color: #1a1a1a !important; font-size: 2.2rem !important; }
-.hstat-label { color: #888 !important; }
-.hero-stats { border-top: 1px solid rgba(0,0,0,0.1) !important; }
-.btn-ghost { color: #333 !important; border-color: rgba(0,0,0,0.15) !important; }
-.btn-ghost:hover { background: rgba(0,0,0,0.05) !important; }
+        .process-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(26, 71, 42, 0.08);
+            transform: translateY(-8px);
+        }
 
-/* Fix stat numbers direction - ltr */
-.hstat-num { direction: ltr !important; text-align: center !important; unicode-bidi: isolate !important; }
+        .process-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
 
-/* Fix hero badge */
-.hero-badge { color: #0060cc !important; background: rgba(0,122,255,0.08) !important; }
+        .process-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
 
-/* Fix grid lines on white */
-.hero-grid {
-background-image:
-linear-gradient(rgba(0,122,255,0.06) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,122,255,0.06) 1px, transparent 1px) !important;
-}
+        .process-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
 
-/* Cloud Grey for all cards and sections */
-.bento-card { background: #F8F8F8 !important; }
-.process-step { background: #F8F8F8 !important; }
-.process-step:hover { background: #f0f0f0 !important; }
-.pillar { background: #F8F8F8 !important; }
-.why-card { background: #F8F8F8 !important; }
-.why-card:hover { background: #f0f0f0 !important; }
-.process { background: #F8F8F8 !important; }
-.pillars { background: #F8F8F8 !important; }
-.why { background: #ffffff !important; }
-.services { background: #ffffff !important; }
+        /* ===== SERVICES SECTION ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-</style>
+        .service-card {
+            background: linear-gradient(135deg, rgba(45, 106, 63, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .service-card:hover {
+            background: linear-gradient(135deg, rgba(45, 106, 63, 0.1) 0%, rgba(212, 165, 116, 0.1) 100%);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== GROWTH STAGES ===== */
+        .stages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stage-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .stage-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(26, 71, 42, 0.1);
+        }
+
+        .stage-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .stage-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .stage-list {
+            list-style: none;
+        }
+
+        .stage-list li {
+            padding: 0.8rem 0;
+            padding-right: 2rem;
+            color: var(--gray);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .stage-list li:last-child {
+            border-bottom: none;
+        }
+
+        .stage-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* ===== WHY US SECTION ===== */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .why-card:hover {
+            background: var(--light);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.1);
+        }
+
+        .why-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .why-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-method {
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            background: white;
+            border: 1px solid var(--accent);
+            box-shadow: 0 10px 25px rgba(212, 165, 116, 0.15);
+        }
+
+        .contact-method a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .contact-method a:hover {
+            color: var(--accent);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 4rem 1rem;
+            }
+
+            .process-grid,
+            .services-grid,
+            .stages-container,
+            .why-grid,
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .cta-section {
+                margin: 4rem 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .process-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .process-card:nth-child(1) { animation-delay: 0.1s; }
+        .process-card:nth-child(2) { animation-delay: 0.2s; }
+        .process-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .service-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
 </head>
-<body>
+<body class="ar">
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">
+                LC
+                <div class="logo-subtitle">Legal Compass</div>
+            </a>
+            <nav>
+                <a href="#process"><span class="ar-text">كيف نعمل</span><span class="en-text">How We Work</span></a>
+                <a href="#services"><span class="ar-text">الخدمات</span><span class="en-text">Services</span></a>
+                <a href="#stages"><span class="ar-text">مراحل النمو</span><span class="en-text">Growth Stages</span></a>
+                <a href="#why"><span class="ar-text">لماذا نحن</span><span class="en-text">Why Us</span></a>
+                <button class="lang-switch" onclick="toggleLanguage()"><span class="ar-text">English</span><span class="en-text">العربية</span></button>
+                <a href="https://wa.me/966556422948" class="cta-btn"><span class="ar-text">احجز الآن</span><span class="en-text">Book Now</span></a>
+            </nav>
+        </div>
+    </header>
 
-<!-- Skip link for screen readers -->
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">
+                <span class="ar-text">💼 متاح للعملاء الجدد</span>
+                <span class="en-text">💼 Available for New Clients</span>
+            </span>
+            <h1>
+                <span class="ar-text">البوصلة القانونية</span>
+                <span class="en-text">Legal Compass</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="ar-text">
+                    نصيغ الأطر القانونية لشركات التقنية والفينتك والمشاريع الجريئة في المملكة العربية السعودية.
+                    <strong>حماية ذكية لنمو متسارع.</strong>
+                </span>
+                <span class="en-text">
+                    We craft legal frameworks for tech, fintech, and bold ventures in Saudi Arabia.
+                    <strong>Smart protection for accelerated growth.</strong>
+                </span>
+            </p>
+            <div class="hero-ctas">
+                <a href="https://wa.me/966556422948?text=Hello" class="btn btn-primary">
+                    <span class="ar-text">📅 ابدأ استشارتك الآن</span>
+                    <span class="en-text">📅 Start Your Consultation</span>
+                </a>
+                <a href="#services" class="btn btn-secondary">
+                    <span class="ar-text">استعرض الخدمات →</span>
+                    <span class="en-text">Explore Services →</span>
+                </a>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label"><span class="ar-text">سنوات خبرة</span><span class="en-text">Years of Experience</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label"><span class="ar-text">عميل</span><span class="en-text">Clients</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label"><span class="ar-text">تخصصات</span><span class="en-text">Specialties</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label"><span class="ar-text">لغة</span><span class="en-text">Languages</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<a href="#main-content" class="skip-link">انتقل إلى المحتوى الرئيسي</a>
+    <!-- PROCESS SECTION -->
+    <section id="process" class="section" style="background: white;">
+        <h2 class="section-title"><span class="ar-text">كيف نعمل</span><span class="en-text">How We Work</span></h2>
+        <p class="section-subtitle">
+            <span class="ar-text">رحلتك معنا في 3 خطوات بسيطة وفعالة</span>
+            <span class="en-text">Your journey with us in 3 simple steps</span>
+        </p>
+        
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">01</div>
+                <div class="process-icon">💬</div>
+                <h3>
+                    <span class="ar-text">استشارة أولية مجانية</span>
+                    <span class="en-text">Free Initial Consultation</span>
+                </h3>
+                <p>
+                    <span class="ar-text">نفهم وضعك القانوني ونحدد احتياجاتك بدقة. محادثة مباشرة عبر واتساب أو مكالمة لمدة 30 دقيقة.</span>
+                    <span class="en-text">We understand your legal situation and identify your needs precisely. Direct conversation via WhatsApp or 30-minute call.</span>
+                </p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">02</div>
+                <div class="process-icon">📋</div>
+                <h3>
+                    <span class="ar-text">خطة قانونية مخصصة</span>
+                    <span class="en-text">Customized Legal Plan</span>
+                </h3>
+                <p>
+                    <span class="ar-text">نضع استراتيجية قانونية تناسب مرحلة نمو شركتك وقطاع عملك مع تحديد التكاليف بشفافية كاملة.</span>
+                    <span class="en-text">We create a legal strategy tailored to your company's growth stage and industry with complete cost transparency.</span>
+                </p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">03</div>
+                <div class="process-icon">🚀</div>
+                <h3>
+                    <span class="ar-text">تنفيذ وحماية مستمرة</span>
+                    <span class="en-text">Implementation & Ongoing Protection</span>
+                </h3>
+                <p>
+                    <span class="ar-text">نُنفّذ الحلول القانونية ونبقى شركاء لنمو عملك، مع متابعة التغييرات التنظيمية لحمايتك دائماً.</span>
+                    <span class="en-text">We implement legal solutions and remain partners in your growth, constantly monitoring regulatory changes to protect you.</span>
+                </p>
+            </div>
+        </div>
+    </section>
 
-<!-- ============================================================
-     NAVBAR
-============================================================ -->
+    <!-- SERVICES SECTION -->
+    <section id="services" class="section">
+        <h2 class="section-title"><span class="ar-text">خدماتنا القانونية</span><span class="en-text">Our Legal Services</span></h2>
+        <p class="section-subtitle">
+            <span class="ar-text">متخصصون في الحلول القانونية للتقنية والفينتك والاستثمار</span>
+            <span class="en-text">Specialized legal solutions for tech, fintech & investment</span>
+        </p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⚖️</div>
+                <h3><span class="ar-text">قانون التقنية</span><span class="en-text">Technology Law</span></h3>
+                <p>
+                    <span class="ar-text">حماية شاملة لشركات التقنية من الملكية الفكرية إلى عقود البرمجيات والترخيص.</span>
+                    <span class="en-text">Comprehensive protection for tech companies from IP to software contracts and licensing.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏦</div>
+                <h3><span class="ar-text">التقنية المالية (فينتك)</span><span class="en-text">Fintech & Compliance</span></h3>
+                <p>
+                    <span class="ar-text">التوافق مع متطلبات ساما وهيئة السوق المالية وأنظمة الدفع الرقمي.</span>
+                    <span class="en-text">Compliance with SAMA, CMA requirements and digital payment regulations.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3><span class="ar-text">الاستثمار والمشاريع</span><span class="en-text">Investment & Ventures</span></h3>
+                <p>
+                    <span class="ar-text">هيكلة الجولات الاستثمارية وعقود المساهمين وصفقات الاندماج والاستحواذ.</span>
+                    <span class="en-text">Structuring investment rounds, shareholder agreements, and M&A deals.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤝</div>
+                <h3><span class="ar-text">العقود التجارية</span><span class="en-text">Commercial Contracts</span></h3>
+                <p>
+                    <span class="ar-text">صياغة ومراجعة وتفاوض عقود SaaS واتفاقيات الشراكة وعقود الخدمات التقنية.</span>
+                    <span class="en-text">Drafting, reviewing & negotiating SaaS, partnership & tech service contracts.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3><span class="ar-text">البيانات والخصوصية</span><span class="en-text">Data & Privacy (PDPL)</span></h3>
+                <p>
+                    <span class="ar-text">الامتثال لنظام حماية البيانات الشخصية PDPL وسياسات الخصوصية المتوافقة.</span>
+                    <span class="en-text">PDPL compliance and privacy policies that meet regulatory requirements.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3><span class="ar-text">الهيكلة المؤسسية</span><span class="en-text">Corporate Structuring</span></h3>
+                <p>
+                    <span class="ar-text">تأسيس الشركات وإعادة الهيكلة وأطر الحوكمة المتوافقة مع رؤية 2030.</span>
+                    <span class="en-text">Company formation, restructuring & governance frameworks aligned with Vision 2030.</span>
+                </p>
+            </div>
+        </div>
 
-<header role="banner">
-  <nav class="navbar" role="navigation" aria-label="القائمة الرئيسية">
-    <a href="#" class="nav-brand" aria-label="الصفحة الرئيسية - Legal Compass">
-      <div class="nav-logo-mark" aria-hidden="true">LC</div>
-      <div>
-        <div class="nav-brand-text">Legal Compass</div>
-        <div class="nav-brand-sub">البوصلة القانونية</div>
-      </div>
-    </a>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="https://wa.me/966556422948" class="btn btn-primary">
+                <span class="ar-text">احصل على استشارة مجانية →</span>
+                <span class="en-text">Get Free Consultation →</span>
+            </a>
+        </div>
+    </section>
 
-```
-<ul class="nav-links" role="list">
-  <li><a href="#process" aria-label="قسم كيف نعمل">How We Work</a></li>
-  <li><a href="#services" aria-label="قسم الخدمات">Services</a></li>
-  <li><a href="#pillars" aria-label="قسم مراحل النمو">Growth Stages</a></li>
-  <li><a href="#contact" class="nav-cta" aria-label="احجز استشارة قانونية">Book a Consult</a></li>
-</ul>
+    <!-- GROWTH STAGES SECTION -->
+    <section id="stages" class="section" style="background: white;">
+        <h2 class="section-title">
+            <span class="ar-text">الحل القانوني لكل مرحلة</span>
+            <span class="en-text">Legal Solution for Every Stage</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="ar-text">نرافقك من التأسيس إلى النضج</span>
+            <span class="en-text">We guide you from founding to maturity</span>
+        </p>
+        
+        <div class="stages-container">
+            <div class="stage-card">
+                <span class="stage-badge"><span class="ar-text">مرحلة التأسيس</span><span class="en-text">Founding Stage</span></span>
+                <h3><span class="ar-text">ابنِ أساساً متيناً</span><span class="en-text">Build a Strong Foundation</span></h3>
+                <ul class="stage-list">
+                    <li><span class="ar-text">هيكلة الكيان القانوني المناسب</span><span class="en-text">Proper legal entity structuring</span></li>
+                    <li><span class="ar-text">عقود المؤسسين وتوزيع الحصص</span><span class="en-text">Founder agreements & equity distribution</span></li>
+                    <li><span class="ar-text">حماية الملكية الفكرية والعلامة التجارية</span><span class="en-text">IP protection & trademark registration</span></li>
+                    <li><span class="ar-text">التسجيل لدى الجهات التنظيمية</span><span class="en-text">Regulatory registrations</span></li>
+                </ul>
+            </div>
+            <div class="stage-card">
+                <span class="stage-badge"><span class="ar-text">مرحلة النمو</span><span class="en-text">Growth Stage</span></span>
+                <h3><span class="ar-text">سرّع نموك بأمان</span><span class="en-text">Accelerate Growth Safely</span></h3>
+                <ul class="stage-list">
+                    <li><span class="ar-text">هيكلة جولات الاستثمار (Seed, Series A)</span><span class="en-text">Fundraising rounds structuring</span></li>
+                    <li><span class="ar-text">عقود SaaS وعقود العملاء التجاريين</span><span class="en-text">SaaS & client contracts</span></li>
+                    <li><span class="ar-text">الامتثال لنظام PDPL لحماية البيانات</span><span class="en-text">PDPL compliance</span></li>
+                    <li><span class="ar-text">تراخيص التقنية المالية من ساما</span><span class="en-text">Fintech licensing</span></li>
+                </ul>
+            </div>
+            <div class="stage-card">
+                <span class="stage-badge"><span class="ar-text">مرحلة النضج</span><span class="en-text">Maturity Stage</span></span>
+                <h3><span class="ar-text">احمِ ما بنيته</span><span class="en-text">Protect What You've Built</span></h3>
+                <ul class="stage-list">
+                    <li><span class="ar-text">أطر الحوكمة المؤسسية والمجلس</span><span class="en-text">Corporate governance frameworks</span></li>
+                    <li><span class="ar-text">صفقات الاندماج والاستحواذ (M&A)</span><span class="en-text">M&A transactions</span></li>
+                    <li><span class="ar-text">الامتثال التنظيمي المستمر</span><span class="en-text">Ongoing regulatory compliance</span></li>
+                    <li><span class="ar-text">التوسع الإقليمي والدولي</span><span class="en-text">Regional & international expansion</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-<button class="hamburger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu(this)">
-  <span></span><span></span><span></span>
-</button>
-```
+    <!-- WHY US SECTION -->
+    <section id="why" class="section">
+        <h2 class="section-title">
+            <span class="ar-text">لماذا البوصلة القانونية؟</span>
+            <span class="en-text">Why Legal Compass?</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="ar-text">ما يميزنا عن الآخرين</span>
+            <span class="en-text">What sets us apart</span>
+        </p>
+        
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">🎯</div>
+                <h3><span class="ar-text">متخصصون فقط</span><span class="en-text">Sector-Focused</span></h3>
+                <p>
+                    <span class="ar-text">نتخصص في التقنية والفينتك والاستثمار فقط — لسنا عاملين، بل متخصصون.</span>
+                    <span class="en-text">We specialize exclusively in tech, fintech & investment—not generalists, specialists.</span>
+                </p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h3><span class="ar-text">سريعون ومتجاوبون</span><span class="en-text">Fast & Responsive</span></h3>
+                <p>
+                    <span class="ar-text">الأعمال التقنية لا تنتظر. ردنا خلال 24 ساعة في أيام العمل.</span>
+                    <span class="en-text">Tech business doesn't wait. We respond within 24 hours on business days.</span>
+                </p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🌐</div>
+                <h3><span class="ar-text">خبرة ثنائية اللغة</span><span class="en-text">Bilingual Expertise</span></h3>
+                <p>
+                    <span class="ar-text">إتقان تام للعربية والإنجليزية يجسر الفجوة بين الأعمال الدولية والمتطلبات المحلية.</span>
+                    <span class="en-text">Fluent in Arabic & English, bridging international business with local requirements.</span>
+                </p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">💡</div>
+                <h3><span class="ar-text">عقلية تجارية أولاً</span><span class="en-text">Business-First Mindset</span></h3>
+                <p>
+                    <span class="ar-text">لا نقول "لا" فقط — نجد الحلول القانونية التي تُمكّن أهدافك التجارية.</span>
+                    <span class="en-text">We don't just say no—we find legal solutions that enable your business goals.</span>
+                </p>
+            </div>
+        </div>
+    </section>
 
-  </nav>
-
-  <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="القائمة المحمولة">
-    <ul role="list">
-      <li><a href="#process" onclick="closeMenu()">How We Work · كيف نعمل</a></li>
-      <li><a href="#services" onclick="closeMenu()">Services · الخدمات</a></li>
-      <li><a href="#pillars" onclick="closeMenu()">Growth Stages · مراحل النمو</a></li>
-      <li><a href="#why" onclick="closeMenu()">Why Us · لماذا نحن</a></li>
-    </ul>
-    <a href="https://wa.me/966556422948" class="m-cta" aria-label="احجز استشارة عبر واتساب">احجز استشارتك الآن ←</a>
-  </nav>
-</header>
-
-<!-- ============================================================
-     HERO
-============================================================ -->
-
-<main id="main-content">
-<section class="hero" aria-labelledby="hero-heading">
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="blob blob-1" aria-hidden="true"></div>
-  <div class="blob blob-2" aria-hidden="true"></div>
-
-  <div class="hero-content">
-    <div class="hero-badge" role="status" aria-live="polite">
-      <span class="hero-badge-dot" aria-hidden="true"></span>
-      متاح لعملاء جدد · Available for new clients
+    <!-- CTA SECTION -->
+    <div class="cta-section">
+        <h2>
+            <span class="ar-text">هل أنت مستعد لبناء أساس قانوني قوي؟</span>
+            <span class="en-text">Ready to Build a Strong Legal Foundation?</span>
+        </h2>
+        <p>
+            <span class="ar-text">استشارتك الأولية مجانية بالكامل. دعنا نساعدك في وضع استراتيجية قانونية فعالة.</span>
+            <span class="en-text">Your first consultation is completely free. Let us help you create an effective legal strategy.</span>
+        </p>
+        <a href="https://wa.me/966556422948?text=Hello" class="cta-btn-white">
+            <span class="ar-text">📱 اتصل بنا الآن</span>
+            <span class="en-text">📱 Contact Us Now</span>
+        </a>
     </div>
 
-```
-<h1 id="hero-heading">
-  البوصلة القانونية:<br/>
-  حيث تلتقي الأنظمة<br/>
-  <span class="highlight">بابتكارات المستقبل</span>
-</h1>
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <h2 class="section-title">
+                <span class="ar-text">تواصل معنا</span>
+                <span class="en-text">Get in Touch</span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="ar-text">نحن هنا للإجابة على جميع استفساراتك</span>
+                <span class="en-text">We're here to answer all your questions</span>
+            </p>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div style="font-size: 2rem;">☎️</div>
+                    <p style="color: var(--gray);">
+                        <span class="ar-text">اتصل أو واتساب</span>
+                        <span class="en-text">Call or WhatsApp</span>
+                    </p>
+                    <a href="tel:+966556422948">+966 55 642 2948</a>
+                </div>
+                <div class="contact-method">
+                    <div style="font-size: 2rem;">✉️</div>
+                    <p style="color: var(--gray);">
+                        <span class="ar-text">راسلنا بريداً إلكترونياً</span>
+                        <span class="en-text">Email Us</span>
+                    </p>
+                    <a href="mailto:legalcompasssa@gmail.com">legalcompasssa@gmail.com</a>
+                </div>
+                <div class="contact-method">
+                    <div style="font-size: 2rem;">💬</div>
+                    <p style="color: var(--gray);">
+                        <span class="ar-text">واتساب مباشر</span>
+                        <span class="en-text">WhatsApp Direct</span>
+                    </p>
+                    <a href="https://wa.me/966556422948">
+                        <span class="ar-text">اضغط هنا للتواصل</span>
+                        <span class="en-text">Click to Chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<p class="hero-ar">The Legal Compass: Where Regulations Meet Future Innovation</p>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">LC · <span class="ar-text">البوصلة القانونية</span><span class="en-text">Legal Compass</span></div>
+            <p class="footer-text">
+                <span class="ar-text">استشارات قانونية متخصصة في التقنية والتقنية المالية والاستثمار بالمملكة العربية السعودية</span>
+                <span class="en-text">Specialized legal consulting in technology, fintech & investment in Saudi Arabia</span>
+            </p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Legal Compass · <span class="ar-text">جميع الحقوق محفوظة</span><span class="en-text">All Rights Reserved</span></p>
+        </div>
+    </footer>
 
-<p class="hero-desc">
-  نصيغ الأطر القانونية لشركات التقنية المالية (فينتك)، التقنية، والمشاريع الجريئة في المملكة العربية السعودية.<br/>
-  <strong style="color:var(--off);font-weight:500;">حماية ذكية لنمو متسارع.</strong>
-</p>
+    <script>
+        // Get current language from localStorage or default to Arabic
+        const currentLang = localStorage.getItem('lang') || 'ar';
+        document.body.className = currentLang;
+        if (currentLang === 'en') {
+            document.getElementById('html').setAttribute('dir', 'ltr');
+            document.getElementById('html').setAttribute('lang', 'en');
+        }
 
-<div class="hero-actions">
-  <a href="https://wa.me/966556422948?text=مرحباً، أود الاستفسار عن خدماتكم القانونية"
-     class="btn-primary"
-     aria-label="ابدأ استشارتك القانونية عبر واتساب">
-    📅 ابدأ استشارتك الآن
-  </a>
-  <a href="#services" class="btn-ghost" aria-label="استعرض خدماتنا القانونية">
-    استعرض خدماتنا →
-  </a>
-</div>
+        // Toggle language function
+        function toggleLanguage() {
+            const body = document.body;
+            const html = document.getElementById('html');
+            
+            if (body.classList.contains('ar')) {
+                body.classList.remove('ar');
+                body.classList.add('en');
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+                localStorage.setItem('lang', 'en');
+            } else {
+                body.classList.remove('en');
+                body.classList.add('ar');
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                localStorage.setItem('lang', 'ar');
+            }
+        }
 
-<div class="hero-stats" aria-label="إحصائيات Legal Compass">
-  <div>
-    <span class="hstat-num"><span dir="ltr">10+</span></span>
-    <div class="hstat-label">سنوات خبرة · Years</div>
-  </div>
-  <div>
-    <span class="hstat-num"><span dir="ltr">50+</span></span>
-    <div class="hstat-label">عميل · Clients</div>
-  </div>
-  <div>
-    <span class="hstat-num">6</span>
-    <div class="hstat-label">تخصصات · Specialties</div>
-  </div>
-  <div>
-    <span class="hstat-num">2</span>
-    <div class="hstat-label">لغتان · Languages</div>
-  </div>
-</div>
-```
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
 
-  </div>
-</section>
-
-<!-- ============================================================
-     PROCESS
-============================================================ -->
-
-<section class="section process" id="process" aria-labelledby="process-heading">
-  <div class="section-inner">
-    <div class="eyebrow" aria-hidden="true">How We Work</div>
-    <h2 class="section-title" id="process-heading">رحلتك معنا في 3 خطوات</h2>
-    <p class="section-title-ar">Your journey with us in 3 simple steps</p>
-
-```
-<div class="process-grid" role="list">
-  <article class="process-step" role="listitem" data-aos="fade-up" data-aos-delay="0">
-    <div class="step-num" aria-hidden="true">01</div>
-    <div class="step-icon" aria-hidden="true">💬</div>
-    <h3 class="step-title">استشارة أولية مجانية</h3>
-    <p class="step-desc">نفهم وضعك القانوني ونحدد احتياجاتك بدقة. محادثة مباشرة عبر واتساب أو مكالمة لمدة 30 دقيقة.</p>
-  </article>
-  <article class="process-step" role="listitem" data-aos="fade-up" data-aos-delay="100">
-    <div class="step-num" aria-hidden="true">02</div>
-    <div class="step-icon" aria-hidden="true">📋</div>
-    <h3 class="step-title">خطة قانونية مخصصة</h3>
-    <p class="step-desc">نضع استراتيجية قانونية تناسب مرحلة نمو شركتك وقطاع عملك مع تحديد التكاليف بشفافية كاملة.</p>
-  </article>
-  <article class="process-step" role="listitem" data-aos="fade-up" data-aos-delay="200">
-    <div class="step-num" aria-hidden="true">03</div>
-    <div class="step-icon" aria-hidden="true">🚀</div>
-    <h3 class="step-title">تنفيذ وحماية مستمرة</h3>
-    <p class="step-desc">نُنفّذ الحلول القانونية ونبقى شركاء لنمو عملك، مع متابعة التغييرات التنظيمية لحمايتك دائماً.</p>
-  </article>
-</div>
-```
-
-  </div>
-</section>
-
-<!-- ============================================================
-     SERVICES — BENTO GRID
-============================================================ -->
-
-<section class="section services" id="services" aria-labelledby="services-heading">
-  <div class="section-inner">
-    <div class="eyebrow" aria-hidden="true">Practice Areas</div>
-    <h2 class="section-title" id="services-heading">خدماتنا القانونية</h2>
-    <p class="section-title-ar">Specialized legal services for tech & fintech</p>
-
-```
-<div class="bento-grid" role="list" aria-label="قائمة الخدمات القانونية">
-
-  <article class="bento-card" role="listitem" data-aos="fade-up" data-aos-delay="0">
-    <div class="bento-card-num">01</div>
-    <div class="bento-card-icon" aria-hidden="true">⚖️</div>
-    <h3 class="bento-card-en">Technology Law</h3>
-    <div class="bento-card-ar">القانون التقني</div>
-    <p class="bento-card-desc">حماية شاملة لشركات التقنية من الملكية الفكرية إلى عقود البرمجيات والترخيص.</p>
-  </article>
-
-  <article class="bento-card" role="listitem" data-aos="fade-up" data-aos-delay="60">
-    <div class="bento-card-num">02</div>
-    <div class="bento-card-icon" aria-hidden="true">🏦</div>
-    <h3 class="bento-card-en">Fintech & Regulatory</h3>
-    <div class="bento-card-ar">التقنية المالية (فينتك) والامتثال التنظيمي</div>
-    <p class="bento-card-desc">التوافق مع متطلبات ساما وهيئة السوق المالية وأنظمة الدفع الرقمي.</p>
-  </article>
-
-  <article class="bento-card" role="listitem" data-aos="fade-up" data-aos-delay="120">
-    <div class="bento-card-num">03</div>
-    <div class="bento-card-icon" aria-hidden="true">📈</div>
-    <h3 class="bento-card-en">Investment & Ventures</h3>
-    <div class="bento-card-ar">الاستثمار والمشاريع</div>
-    <p class="bento-card-desc">هيكلة الجولات الاستثمارية وعقود المساهمين وصفقات الاندماج والاستحواذ.</p>
-  </article>
-
-  <article class="bento-card" role="listitem" data-aos="fade-up" data-aos-delay="0">
-    <div class="bento-card-num">04</div>
-    <div class="bento-card-icon" aria-hidden="true">🤝</div>
-    <h3 class="bento-card-en">Commercial Contracts</h3>
-    <div class="bento-card-ar">العقود التجارية</div>
-    <p class="bento-card-desc">صياغة ومراجعة وتفاوض عقود SaaS واتفاقيات الشراكة وعقود الخدمات التقنية.</p>
-  </article>
-
-  <article class="bento-card" role="listitem" data-aos="fade-up" data-aos-delay="60">
-    <div class="bento-card-num">05</div>
-    <div class="bento-card-icon" aria-hidden="true">🛡️</div>
-    <h3 class="bento-card-en">Data & Privacy (PDPL)</h3>
-    <div class="bento-card-ar">البيانات والخصوصية</div>
-    <p class="bento-card-desc">الامتثال لنظام حماية البيانات الشخصية PDPL وسياسات الخصوصية المتوافقة.</p>
-  </article>
-
-  <article class="bento-card" role="listitem" data-aos="fade-up">
-    <div class="bento-card-text">
-      <div class="bento-card-num">06</div>
-      <div class="bento-card-icon" aria-hidden="true">🏢</div>
-      <h3 class="bento-card-en">Corporate Structuring</h3>
-      <div class="bento-card-ar">الهيكلة المؤسسية</div>
-      <p class="bento-card-desc">تأسيس الشركات وإعادة الهيكلة وأطر الحوكمة المتوافقة مع رؤية 2030.</p>
-    </div>
-    <div class="bento-card-cta">
-      <a href="https://wa.me/966556422948" class="btn-primary" aria-label="استفسر عن الهيكلة المؤسسية عبر واتساب">
-        استشارة مجانية →
-      </a>
-    </div>
-  </article>
-
-</div>
-```
-
-  </div>
-</section>
-
-<!-- ============================================================
-     PILLARS / GROWTH STAGES
-============================================================ -->
-
-<section class="section pillars" id="pillars" aria-labelledby="pillars-heading">
-  <div class="section-inner">
-    <div class="eyebrow" aria-hidden="true">Growth Stages</div>
-    <h2 class="section-title" id="pillars-heading">الحل القانوني لكل مرحلة</h2>
-    <p class="section-title-ar">Legal solutions tailored to your growth stage</p>
-
-```
-<div class="pillars-grid" role="list">
-  <article class="pillar" role="listitem" data-aos="fade-up" data-aos-delay="0">
-    <div class="pillar-phase">مرحلة التأسيس · Founding Stage</div>
-    <h3 class="pillar-title">ابنِ أساساً متيناً</h3>
-    <div class="pillar-items">
-      <div class="pillar-item">هيكلة الكيان القانوني المناسب</div>
-      <div class="pillar-item">عقود المؤسسين وتوزيع الحصص</div>
-      <div class="pillar-item">حماية الملكية الفكرية والعلامة التجارية</div>
-      <div class="pillar-item">التسجيل لدى الجهات التنظيمية</div>
-    </div>
-  </article>
-
-  <article class="pillar" role="listitem" data-aos="fade-up" data-aos-delay="100">
-    <div class="pillar-phase">مرحلة النمو · Growth Stage</div>
-    <h3 class="pillar-title">سرّع نموك بأمان</h3>
-    <div class="pillar-items">
-      <div class="pillar-item">هيكلة جولات الاستثمار (Seed, Series A)</div>
-      <div class="pillar-item">عقود SaaS وعقود العملاء التجاريين</div>
-      <div class="pillar-item">الامتثال لنظام PDPL لحماية البيانات</div>
-      <div class="pillar-item">تراخيص التقنية المالية (فينتك) من ساما والهيئة</div>
-    </div>
-  </article>
-
-  <article class="pillar" role="listitem" data-aos="fade-up" data-aos-delay="200">
-    <div class="pillar-phase">مرحلة النضج · Maturity Stage</div>
-    <h3 class="pillar-title">احمِ ما بنيته</h3>
-    <div class="pillar-items">
-      <div class="pillar-item">أطر الحوكمة المؤسسية والمجلس</div>
-      <div class="pillar-item">صفقات الاندماج والاستحواذ (M&A)</div>
-      <div class="pillar-item">الامتثال التنظيمي المستمر مع ساما وCMA</div>
-      <div class="pillar-item">التوسع الإقليمي والدولي</div>
-    </div>
-  </article>
-</div>
-```
-
-  </div>
-</section>
-
-<!-- ============================================================
-     WHY
-============================================================ -->
-
-<section class="section why" id="why" aria-labelledby="why-heading">
-  <div class="section-inner">
-    <div class="eyebrow" aria-hidden="true">Why Legal Compass</div>
-    <h2 class="section-title" id="why-heading">ميزتنا التنافسية</h2>
-    <p class="section-title-ar">What sets us apart</p>
-    <div class="why-grid" role="list">
-      <article class="why-card" role="listitem" data-aos="fade-up" data-aos-delay="0">
-        <div class="why-icon" aria-hidden="true">🎯</div>
-        <h3 class="why-en">Sector-Focused</h3>
-        <div class="why-ar">تخصص قطاعي عميق</div>
-        <p class="why-desc">نتخصص في التقنية والتقنية المالية (فينتك) والاستثمار فقط — لسنا عاملين، بل متخصصون.</p>
-      </article>
-      <article class="why-card" role="listitem" data-aos="fade-up" data-aos-delay="80">
-        <div class="why-icon" aria-hidden="true">⚡</div>
-        <h3 class="why-en">Fast & Responsive</h3>
-        <div class="why-ar">سريع ومتجاوب</div>
-        <p class="why-desc">الأعمال التقنية لا تنتظر. ردنا خلال 24 ساعة في أيام العمل.</p>
-      </article>
-      <article class="why-card" role="listitem" data-aos="fade-up" data-aos-delay="160">
-        <div class="why-icon" aria-hidden="true">🌐</div>
-        <h3 class="why-en">Bilingual Expertise</h3>
-        <div class="why-ar">خبرة ثنائية اللغة</div>
-        <p class="why-desc">إتقان تام للعربية والإنجليزية يجسر الفجوة بين الأعمال الدولية والمتطلبات المحلية.</p>
-      </article>
-      <article class="why-card" role="listitem" data-aos="fade-up" data-aos-delay="240">
-        <div class="why-icon" aria-hidden="true">💡</div>
-        <h3 class="why-en">Business-First Mindset</h3>
-        <div class="why-ar">عقلية تجارية أولاً</div>
-        <p class="why-desc">لا نقول "لا" فقط — نجد الحلول القانونية التي تُمكّن أهدافك التجارية.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CONTACT
-============================================================ -->
-
-<section class="section contact" id="contact" aria-labelledby="contact-heading">
-  <div class="section-inner">
-    <div class="contact-inner">
-      <div class="eyebrow" style="justify-content:center" aria-hidden="true">Get in Touch</div>
-      <h2 class="section-title" id="contact-heading" style="text-align:center">لنبدأ العمل معاً</h2>
-      <p class="section-title-ar" style="text-align:center">Let's build something legally solid</p>
-
-```
-  <div class="contact-card">
-    <a href="tel:+966556422948" class="contact-num" dir="ltr" aria-label="اتصل بنا على الرقم +966 55 642 2948">
-      +966 55 642 2948
-    </a>
-    <div class="contact-label">اتصل أو واتساب · Call or WhatsApp</div>
-    <a href="mailto:legalcompasssa@gmail.com" class="contact-email" aria-label="راسلنا على البريد الإلكتروني legalcompasssa@gmail.com">
-      legalcompasssa@gmail.com
-    </a>
-    <div class="contact-btns">
-      <a href="https://wa.me/966556422948?text=مرحباً، أود الاستفسار عن خدماتكم القانونية"
-         class="btn-primary"
-         aria-label="تواصل معنا عبر واتساب"
-         target="_blank" rel="noopener noreferrer">
-        📱 واتساب الآن
-      </a>
-      <a href="mailto:legalcompasssa@gmail.com" class="btn-ghost" aria-label="راسلنا عبر البريد الإلكتروني">
-        ✉️ راسلنا
-      </a>
-    </div>
-  </div>
-</div>
-```
-
-  </div>
-</section>
-</main>
-
-<!-- ============================================================
-     FOOTER
-============================================================ -->
-
-<footer role="contentinfo">
-  <a href="#" class="footer-brand" aria-label="Legal Compass - العودة للأعلى">
-    <div class="nav-logo-mark" aria-hidden="true">LC</div>
-    <span class="footer-brand-name">Legal Compass</span>
-  </a>
-  <p class="footer-copy">© 2025 Legal Compass · استشارات قانونية في التقنية والتقنية المالية (فينتك) والاستثمار</p>
-</footer>
-
-<!-- WA Float -->
-
-<a href="https://wa.me/966556422948"
-class="wa-float"
-target="_blank" rel="noopener noreferrer"
-aria-label="تواصل معنا عبر واتساب">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-</svg>
-</a>
-
-<!-- AOS Library -->
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-<script>
-// Init AOS
-AOS.init({ duration: 700, once: true, offset: 60 });
-
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-  document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
-});
-
-// Hamburger menu
-function toggleMenu(btn) {
-  const menu = document.getElementById('mobile-menu');
-  const isOpen = menu.classList.toggle('open');
-  btn.classList.toggle('open', isOpen);
-  btn.setAttribute('aria-expanded', isOpen);
-}
-function closeMenu() {
-  document.getElemen
+        // Header shadow on scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
