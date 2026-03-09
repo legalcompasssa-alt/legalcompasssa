@@ -16,7 +16,6 @@
         :root {
             --primary: #1a472a;
             --primary-light: #2d6a3f;
-            --primary-lighter: #4a8f54;
             --accent: #d4a574;
             --accent-dark: #b8945c;
             --dark: #0f1419;
@@ -24,6 +23,10 @@
             --gray: #6b7280;
             --border: #e5e7eb;
             --success: #10b981;
+        }
+
+        html {
+            direction: rtl;
         }
 
         html.en {
@@ -34,7 +37,6 @@
             color: var(--dark);
             background: var(--light);
             line-height: 1.6;
-            transition: all 0.3s ease;
         }
 
         body.ar {
@@ -51,11 +53,12 @@
         body.en .ar-text { display: none; }
         body.en .en-text { display: block; }
 
+        /* HEADER */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
@@ -77,11 +80,10 @@
             font-weight: 800;
             color: var(--primary);
             text-decoration: none;
-            letter-spacing: -1px;
         }
 
         .logo-subtitle {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--accent);
             font-weight: 600;
         }
@@ -99,6 +101,7 @@
             font-weight: 500;
             font-size: 0.95rem;
             position: relative;
+            transition: color 0.3s;
         }
 
         nav a::after {
@@ -109,14 +112,19 @@
             width: 0;
             height: 2px;
             background: var(--accent);
-            transition: width 0.3s ease;
+            transition: width 0.3s;
         }
 
         nav a:hover::after {
             width: 100%;
         }
 
-        .lang-switch {
+        html.en nav a::after {
+            right: auto;
+            left: 0;
+        }
+
+        .lang-btn {
             background: var(--accent);
             color: white;
             border: none;
@@ -125,11 +133,11 @@
             font-weight: 600;
             cursor: pointer;
             font-size: 0.85rem;
-            transition: all 0.3s ease;
             font-family: inherit;
+            transition: all 0.3s;
         }
 
-        .lang-switch:hover {
+        .lang-btn:hover {
             background: var(--accent-dark);
             transform: translateY(-2px);
         }
@@ -142,7 +150,7 @@
             font-weight: 600;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             border: 2px solid var(--primary);
         }
 
@@ -151,12 +159,12 @@
             transform: translateY(-2px);
         }
 
+        /* HERO */
         .hero {
             margin-top: 80px;
             padding: 6rem 2rem;
             background: linear-gradient(135deg, rgba(26, 71, 42, 0.03) 0%, rgba(212, 165, 116, 0.03) 100%);
             position: relative;
-            overflow: hidden;
         }
 
         .hero::before {
@@ -168,6 +176,11 @@
             height: 600px;
             background: radial-gradient(circle, rgba(45, 106, 63, 0.05) 0%, transparent 70%);
             border-radius: 50%;
+        }
+
+        html.en .hero::before {
+            right: auto;
+            left: -10%;
         }
 
         .hero-content {
@@ -208,6 +221,7 @@
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
+            margin-bottom: 4rem;
         }
 
         .btn {
@@ -216,7 +230,7 @@
             font-weight: 600;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             border: 2px solid;
             cursor: pointer;
             font-family: inherit;
@@ -249,7 +263,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 2rem;
-            margin-top: 4rem;
             padding-top: 4rem;
             border-top: 1px solid var(--border);
         }
@@ -271,6 +284,7 @@
             margin-top: 0.5rem;
         }
 
+        /* SECTIONS */
         .section {
             padding: 6rem 2rem;
             max-width: 1400px;
@@ -291,81 +305,51 @@
             max-width: 500px;
         }
 
-        .process-grid {
+        /* CARDS */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .process-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .process-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(26, 71, 42, 0.08);
-            transform: translateY(-8px);
-        }
-
-        .process-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .process-card h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .process-card p {
-            color: var(--gray);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .service-card {
-            background: linear-gradient(135deg, rgba(45, 106, 63, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
-            padding: 2rem;
+        .card {
+            background: white;
+            padding: 2.5rem;
             border-radius: 12px;
-            border: 1px solid rgba(212, 165, 116, 0.2);
-            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
         }
 
-        .service-card:hover {
+        .card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(26, 71, 42, 0.1);
         }
 
-        .service-icon {
+        .card-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .service-card h3 {
+        .card h3 {
             font-size: 1.3rem;
             color: var(--primary);
             margin-bottom: 0.8rem;
         }
 
-        .service-card p {
+        .card p {
             color: var(--gray);
+            line-height: 1.7;
         }
 
-        .stages-container {
+        /* SERVICES */
+        .service-card {
+            background: linear-gradient(135deg, rgba(45, 106, 63, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        /* STAGES */
+        .stages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -375,13 +359,8 @@
         .stage-card {
             background: white;
             padding: 2.5rem;
-            border-radius: 15px;
+            border-radius: 12px;
             border: 2px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .stage-card:hover {
-            border-color: var(--accent);
         }
 
         .stage-badge {
@@ -414,48 +393,29 @@
             position: relative;
         }
 
+        html.en .stage-list li {
+            padding-right: 0;
+            padding-left: 2rem;
+        }
+
         .stage-list li::before {
             content: '✓';
             position: absolute;
             right: 0;
             color: var(--success);
+            font-weight: bold;
         }
 
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        html.en .stage-list li::before {
+            right: auto;
+            left: 0;
         }
 
-        .why-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-            text-align: center;
+        .stage-list li:last-child {
+            border-bottom: none;
         }
 
-        .why-card:hover {
-            border-color: var(--accent);
-        }
-
-        .why-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .why-card h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .why-card p {
-            color: var(--gray);
-        }
-
+        /* CTA SECTION */
         .cta-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
@@ -479,7 +439,7 @@
             margin-right: auto;
         }
 
-        .cta-btn-white {
+        .cta-white {
             background: white;
             color: var(--primary);
             padding: 1rem 2.5rem;
@@ -487,63 +447,52 @@
             font-weight: 700;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .cta-btn-white:hover {
+        .cta-white:hover {
             transform: translateY(-3px);
         }
 
-        .contact-section {
-            padding: 6rem 2rem;
-            background: white;
-            text-align: center;
-        }
-
-        .contact-methods {
+        /* CONTACT */
+        .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .contact-method {
+        .contact-card {
             padding: 2rem;
             background: var(--light);
             border-radius: 12px;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            text-align: center;
         }
 
-        .contact-method:hover {
+        .contact-card:hover {
             border: 1px solid var(--accent);
         }
 
-        .contact-method a {
+        .contact-card a {
             color: var(--primary);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.3rem;
             display: block;
             margin-top: 1rem;
         }
 
+        .contact-card a:hover {
+            color: var(--accent);
+        }
+
+        /* FOOTER */
         footer {
             background: var(--dark);
             color: white;
             padding: 3rem 2rem 1.5rem;
             text-align: center;
-            margin-top: 6rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .footer-logo {
@@ -555,6 +504,9 @@
 
         .footer-text {
             color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .footer-bottom {
@@ -562,14 +514,14 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .section-title { font-size: 2rem; }
             nav { gap: 1rem; }
-            .process-grid, .services-grid, .stages-container, .why-grid, .contact-methods {
-                grid-template-columns: 1fr;
-            }
             .hero-ctas { flex-direction: column; }
+            .grid { grid-template-columns: 1fr; }
+            .cta-section { margin: 4rem 1rem; }
         }
     </style>
 </head>
@@ -585,7 +537,7 @@
                 <a href="#services"><span class="ar-text">الخدمات</span><span class="en-text">Services</span></a>
                 <a href="#stages"><span class="ar-text">مراحل النمو</span><span class="en-text">Growth Stages</span></a>
                 <a href="#why"><span class="ar-text">لماذا نحن</span><span class="en-text">Why Us</span></a>
-                <button class="lang-switch" onclick="switchLanguage()"><span class="ar-text">🌐 English</span><span class="en-text">🌐 العربية</span></button>
+                <button class="lang-btn" onclick="switchLang()"><span class="ar-text">🌐 English</span><span class="en-text">🌐 العربية</span></button>
                 <a href="https://wa.me/966556422948" class="cta-btn"><span class="ar-text">احجز الآن</span><span class="en-text">Book Now</span></a>
             </nav>
         </div>
@@ -596,118 +548,100 @@
             <span class="badge"><span class="ar-text">💼 متاح للعملاء الجدد</span><span class="en-text">💼 Available for New Clients</span></span>
             <h1><span class="ar-text">البوصلة القانونية</span><span class="en-text">Legal Compass</span></h1>
             <p class="hero-subtitle">
-                <span class="ar-text">نصيغ الأطر القانونية لشركات التقنية والفينتك والمشاريع الجريئة في المملكة العربية السعودية. <strong>حماية ذكية لنمو متسارع.</strong></span>
-                <span class="en-text">We craft legal frameworks for tech, fintech, and bold ventures in Saudi Arabia. <strong>Smart protection for accelerated growth.</strong></span>
+                <span class="ar-text">نصيغ الأطر القانونية لشركات التقنية والفينتك والمشاريع الجريئة. <strong>حماية ذكية لنمو متسارع.</strong></span>
+                <span class="en-text">We craft legal frameworks for tech, fintech & bold ventures. <strong>Smart protection for accelerated growth.</strong></span>
             </p>
             <div class="hero-ctas">
                 <a href="https://wa.me/966556422948" class="btn btn-primary"><span class="ar-text">📅 ابدأ استشارتك</span><span class="en-text">📅 Start Consultation</span></a>
-                <a href="#services" class="btn btn-secondary"><span class="ar-text">استعرض الخدمات →</span><span class="en-text">Explore Services →</span></a>
+                <a href="#services" class="btn btn-secondary"><span class="ar-text">استعرض الخدمات</span><span class="en-text">Explore Services</span></a>
             </div>
             <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label"><span class="ar-text">سنوات خبرة</span><span class="en-text">Years Experience</span></div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label"><span class="ar-text">عميل</span><span class="en-text">Clients</span></div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">6</div>
-                    <div class="stat-label"><span class="ar-text">تخصصات</span><span class="en-text">Specialties</span></div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">2</div>
-                    <div class="stat-label"><span class="ar-text">لغة</span><span class="en-text">Languages</span></div>
-                </div>
+                <div class="stat"><div class="stat-number">10+</div><div class="stat-label"><span class="ar-text">سنوات خبرة</span><span class="en-text">Years</span></div></div>
+                <div class="stat"><div class="stat-number">50+</div><div class="stat-label"><span class="ar-text">عميل</span><span class="en-text">Clients</span></div></div>
+                <div class="stat"><div class="stat-number">6</div><div class="stat-label"><span class="ar-text">تخصصات</span><span class="en-text">Specialties</span></div></div>
+                <div class="stat"><div class="stat-number">2</div><div class="stat-label"><span class="ar-text">لغة</span><span class="en-text">Languages</span></div></div>
             </div>
         </div>
     </section>
 
     <section id="process" class="section" style="background: white;">
         <h2 class="section-title"><span class="ar-text">كيف نعمل</span><span class="en-text">How We Work</span></h2>
-        <p class="section-subtitle"><span class="ar-text">رحلتك معنا في 3 خطوات</span><span class="en-text">Your journey in 3 simple steps</span></p>
-        <div class="process-grid">
-            <div class="process-card">
-                <div class="process-number">01</div>
-                <div class="process-icon">💬</div>
+        <p class="section-subtitle"><span class="ar-text">رحلتك معنا في 3 خطوات</span><span class="en-text">Your journey in 3 steps</span></p>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">💬</div>
                 <h3><span class="ar-text">استشارة مجانية</span><span class="en-text">Free Consultation</span></h3>
-                <p><span class="ar-text">نفهم وضعك القانوني ونحدد احتياجاتك بدقة. محادثة 30 دقيقة.</span><span class="en-text">We understand your legal situation and identify needs. 30-minute consultation.</span></p>
+                <p><span class="ar-text">نفهم وضعك القانوني بدقة. محادثة 30 دقيقة مباشرة.</span><span class="en-text">We understand your legal situation. Direct 30-minute call.</span></p>
             </div>
-            <div class="process-card">
-                <div class="process-number">02</div>
-                <div class="process-icon">📋</div>
-                <h3><span class="ar-text">خطة مخصصة</span><span class="en-text">Customized Plan</span></h3>
-                <p><span class="ar-text">استراتيجية قانونية تناسب شركتك مع شفافية كاملة في التكاليف.</span><span class="en-text">Legal strategy tailored to your business with full cost transparency.</span></p>
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3><span class="ar-text">خطة مخصصة</span><span class="en-text">Custom Plan</span></h3>
+                <p><span class="ar-text">استراتيجية قانونية مناسبة لشركتك بشفافية كاملة.</span><span class="en-text">Legal strategy for your business with full transparency.</span></p>
             </div>
-            <div class="process-card">
-                <div class="process-number">03</div>
-                <div class="process-icon">🚀</div>
+            <div class="card">
+                <div class="card-icon">🚀</div>
                 <h3><span class="ar-text">تنفيذ مستمر</span><span class="en-text">Ongoing Support</span></h3>
-                <p><span class="ar-text">نُنفّذ الحلول ونبقى شركاء لنموك مع متابعة التغييرات التنظيمية.</span><span class="en-text">We implement solutions and remain your growth partner with regulatory updates.</span></p>
+                <p><span class="ar-text">تنفيذ الحلول والمتابعة المستمرة مع التغييرات التنظيمية.</span><span class="en-text">Implementation with continuous monitoring of regulations.</span></p>
             </div>
         </div>
     </section>
 
     <section id="services" class="section">
-        <h2 class="section-title"><span class="ar-text">خدماتنا</span><span class="en-text">Our Services</span></h2>
-        <p class="section-subtitle"><span class="ar-text">حلول قانونية متخصصة</span><span class="en-text">Specialized legal solutions</span></p>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">⚖️</div>
+        <h2 class="section-title"><span class="ar-text">خدماتنا</span><span class="en-text">Services</span></h2>
+        <p class="section-subtitle"><span class="ar-text">حلول قانونية متخصصة</span><span class="en-text">Specialized solutions</span></p>
+        <div class="grid">
+            <div class="card service-card">
+                <div class="card-icon">⚖️</div>
                 <h3><span class="ar-text">قانون التقنية</span><span class="en-text">Technology Law</span></h3>
-                <p><span class="ar-text">حماية من الملكية الفكرية إلى عقود البرمجيات والترخيص.</span><span class="en-text">Protection from IP to software contracts and licensing.</span></p>
+                <p><span class="ar-text">حماية من الملكية الفكرية إلى عقود البرمجيات.</span><span class="en-text">Protection from IP to software contracts.</span></p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🏦</div>
-                <h3><span class="ar-text">التقنية المالية</span><span class="en-text">Fintech & Compliance</span></h3>
-                <p><span class="ar-text">توافق مع متطلبات ساما والهيئة وأنظمة الدفع الرقمي.</span><span class="en-text">SAMA, CMA compliance and digital payment regulations.</span></p>
+            <div class="card service-card">
+                <div class="card-icon">🏦</div>
+                <h3><span class="ar-text">الفينتك</span><span class="en-text">Fintech</span></h3>
+                <p><span class="ar-text">توافق مع ساما والهيئة وأنظمة الدفع الرقمي.</span><span class="en-text">SAMA, CMA compliance & digital payments.</span></p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">📈</div>
-                <h3><span class="ar-text">الاستثمار والمشاريع</span><span class="en-text">Investment & Ventures</span></h3>
-                <p><span class="ar-text">هيكلة جولات استثمارية وعقود المساهمين و M&A.</span><span class="en-text">Fundraising rounds, shareholder agreements & M&A.</span></p>
+            <div class="card service-card">
+                <div class="card-icon">📈</div>
+                <h3><span class="ar-text">الاستثمار</span><span class="en-text">Investment</span></h3>
+                <p><span class="ar-text">هيكلة جولات استثمارية وعقود المساهمين.</span><span class="en-text">Fundraising & shareholder agreements.</span></p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🤝</div>
-                <h3><span class="ar-text">العقود التجارية</span><span class="en-text">Commercial Contracts</span></h3>
-                <p><span class="ar-text">صياغة ومراجعة عقود SaaS والشراكات والخدمات.</span><span class="en-text">Drafting SaaS, partnership & service contracts.</span></p>
+            <div class="card service-card">
+                <div class="card-icon">🤝</div>
+                <h3><span class="ar-text">العقود</span><span class="en-text">Contracts</span></h3>
+                <p><span class="ar-text">صياغة ومراجعة عقود SaaS والشراكات.</span><span class="en-text">SaaS & partnership contracts.</span></p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🛡️</div>
-                <h3><span class="ar-text">البيانات والخصوصية</span><span class="en-text">Data & Privacy</span></h3>
-                <p><span class="ar-text">الامتثال لنظام PDPL وسياسات الخصوصية المتوافقة.</span><span class="en-text">PDPL compliance and privacy policies.</span></p>
+            <div class="card service-card">
+                <div class="card-icon">🛡️</div>
+                <h3><span class="ar-text">البيانات</span><span class="en-text">Data & Privacy</span></h3>
+                <p><span class="ar-text">الامتثال لنظام PDPL وسياسات الخصوصية.</span><span class="en-text">PDPL compliance & privacy policies.</span></p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🏢</div>
-                <h3><span class="ar-text">الهيكلة المؤسسية</span><span class="en-text">Corporate Structuring</span></h3>
-                <p><span class="ar-text">تأسيس، إعادة هيكلة وأطر حوكمة متوافقة.</span><span class="en-text">Formation, restructuring & governance frameworks.</span></p>
+            <div class="card service-card">
+                <div class="card-icon">🏢</div>
+                <h3><span class="ar-text">الهيكلة</span><span class="en-text">Corporate</span></h3>
+                <p><span class="ar-text">تأسيس، إعادة هيكلة وأطر حوكمة.</span><span class="en-text">Formation, restructuring & governance.</span></p>
             </div>
-        </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://wa.me/966556422948" class="btn btn-primary"><span class="ar-text">احصل على استشارة →</span><span class="en-text">Get Consultation →</span></a>
         </div>
     </section>
 
     <section id="stages" class="section" style="background: white;">
         <h2 class="section-title"><span class="ar-text">الحل لكل مرحلة</span><span class="en-text">Solution for Every Stage</span></h2>
-        <p class="section-subtitle"><span class="ar-text">نرافقك من التأسيس إلى النضج</span><span class="en-text">We guide you from founding to maturity</span></p>
-        <div class="stages-container">
+        <p class="section-subtitle"><span class="ar-text">نرافقك من التأسيس إلى النضج</span><span class="en-text">From founding to maturity</span></p>
+        <div class="stages-grid">
             <div class="stage-card">
                 <span class="stage-badge"><span class="ar-text">التأسيس</span><span class="en-text">Founding</span></span>
-                <h3><span class="ar-text">أساس متين</span><span class="en-text">Strong Foundation</span></h3>
+                <h3><span class="ar-text">أساس متين</span><span class="en-text">Strong Base</span></h3>
                 <ul class="stage-list">
-                    <li><span class="ar-text">هيكلة الكيان القانوني</span><span class="en-text">Legal entity structuring</span></li>
-                    <li><span class="ar-text">عقود المؤسسين والحصص</span><span class="en-text">Founder agreements & equity</span></li>
+                    <li><span class="ar-text">هيكلة الكيان القانوني</span><span class="en-text">Entity structuring</span></li>
+                    <li><span class="ar-text">عقود المؤسسين</span><span class="en-text">Founder agreements</span></li>
                     <li><span class="ar-text">حماية الملكية الفكرية</span><span class="en-text">IP protection</span></li>
-                    <li><span class="ar-text">التسجيلات التنظيمية</span><span class="en-text">Regulatory registrations</span></li>
+                    <li><span class="ar-text">التسجيلات التنظيمية</span><span class="en-text">Regulatory filings</span></li>
                 </ul>
             </div>
             <div class="stage-card">
                 <span class="stage-badge"><span class="ar-text">النمو</span><span class="en-text">Growth</span></span>
                 <h3><span class="ar-text">نمو آمن</span><span class="en-text">Safe Growth</span></h3>
                 <ul class="stage-list">
-                    <li><span class="ar-text">جولات استثمارية</span><span class="en-text">Fundraising rounds</span></li>
+                    <li><span class="ar-text">جولات استثمارية</span><span class="en-text">Fundraising</span></li>
                     <li><span class="ar-text">عقود العملاء</span><span class="en-text">Client contracts</span></li>
                     <li><span class="ar-text">الامتثال PDPL</span><span class="en-text">PDPL compliance</span></li>
                     <li><span class="ar-text">تراخيص فينتك</span><span class="en-text">Fintech licensing</span></li>
@@ -715,108 +649,99 @@
             </div>
             <div class="stage-card">
                 <span class="stage-badge"><span class="ar-text">النضج</span><span class="en-text">Maturity</span></span>
-                <h3><span class="ar-text">حماية إرثك</span><span class="en-text">Protect Your Legacy</span></h3>
+                <h3><span class="ar-text">حماية الإرث</span><span class="en-text">Protect Legacy</span></h3>
                 <ul class="stage-list">
-                    <li><span class="ar-text">أطر الحوكمة</span><span class="en-text">Governance frameworks</span></li>
-                    <li><span class="ar-text">صفقات M&A</span><span class="en-text">M&A transactions</span></li>
-                    <li><span class="ar-text">الامتثال المستمر</span><span class="en-text">Ongoing compliance</span></li>
-                    <li><span class="ar-text">التوسع الإقليمي</span><span class="en-text">Regional expansion</span></li>
+                    <li><span class="ar-text">أطر الحوكمة</span><span class="en-text">Governance</span></li>
+                    <li><span class="ar-text">صفقات M&A</span><span class="en-text">M&A deals</span></li>
+                    <li><span class="ar-text">الامتثال المستمر</span><span class="en-text">Compliance</span></li>
+                    <li><span class="ar-text">التوسع الإقليمي</span><span class="en-text">Expansion</span></li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="why" class="section">
-        <h2 class="section-title"><span class="ar-text">لماذا نحن؟</span><span class="en-text">Why Choose Us?</span></h2>
+        <h2 class="section-title"><span class="ar-text">لماذا نحن؟</span><span class="en-text">Why Us?</span></h2>
         <p class="section-subtitle"><span class="ar-text">ما يميزنا</span><span class="en-text">What sets us apart</span></p>
-        <div class="why-grid">
-            <div class="why-card">
-                <div class="why-icon">🎯</div>
+        <div class="grid">
+            <div class="card" style="text-align: center;">
+                <div class="card-icon">🎯</div>
                 <h3><span class="ar-text">متخصصون</span><span class="en-text">Specialists</span></h3>
-                <p><span class="ar-text">نتخصص في التقنية والفينتك فقط—متخصصون وليس عاملون.</span><span class="en-text">We specialize in tech & fintech only—specialists, not generalists.</span></p>
+                <p><span class="ar-text">نتخصص في التقنية والفينتك فقط.</span><span class="en-text">We specialize in tech & fintech only.</span></p>
             </div>
-            <div class="why-card">
-                <div class="why-icon">⚡</div>
-                <h3><span class="ar-text">سريعون</span><span class="en-text">Fast & Responsive</span></h3>
-                <p><span class="ar-text">الأعمال التقنية لا تنتظر. ردنا خلال 24 ساعة.</span><span class="en-text">Tech business doesn't wait. We respond within 24 hours.</span></p>
+            <div class="card" style="text-align: center;">
+                <div class="card-icon">⚡</div>
+                <h3><span class="ar-text">سريعون</span><span class="en-text">Fast</span></h3>
+                <p><span class="ar-text">ردنا خلال 24 ساعة في أيام العمل.</span><span class="en-text">We respond within 24 hours.</span></p>
             </div>
-            <div class="why-card">
-                <div class="why-icon">🌐</div>
+            <div class="card" style="text-align: center;">
+                <div class="card-icon">🌐</div>
                 <h3><span class="ar-text">ثنائية اللغة</span><span class="en-text">Bilingual</span></h3>
-                <p><span class="ar-text">إتقان العربية والإنجليزية يجسر الفجوة بين الدولي والمحلي.</span><span class="en-text">Fluent in Arabic & English, bridging international & local needs.</span></p>
+                <p><span class="ar-text">عربي وإنجليزي بطلاقة كاملة.</span><span class="en-text">Fluent in Arabic & English.</span></p>
             </div>
-            <div class="why-card">
-                <div class="why-icon">💡</div>
+            <div class="card" style="text-align: center;">
+                <div class="card-icon">💡</div>
                 <h3><span class="ar-text">عقلية تجارية</span><span class="en-text">Business-Focused</span></h3>
-                <p><span class="ar-text">لا نقول "لا" فقط—نجد حلول قانونية تُمكّن أهدافك.</span><span class="en-text">We don't just say no—we find solutions that enable your goals.</span></p>
+                <p><span class="ar-text">نجد حلول قانونية تُمكّن أهدافك.</span><span class="en-text">We find solutions that enable your goals.</span></p>
             </div>
         </div>
     </section>
 
     <div class="cta-section">
-        <h2><span class="ar-text">جاهز لبناء أساس قانوني قوي؟</span><span class="en-text">Ready for a Strong Legal Foundation?</span></h2>
-        <p><span class="ar-text">استشارتك الأولية مجانية. دعنا نساعدك في وضع استراتيجية فعالة.</span><span class="en-text">Your first consultation is free. Let us help create an effective strategy.</span></p>
-        <a href="https://wa.me/966556422948" class="cta-btn-white"><span class="ar-text">📱 اتصل بنا</span><span class="en-text">📱 Contact Us</span></a>
+        <h2><span class="ar-text">جاهز للبدء؟</span><span class="en-text">Ready to Get Started?</span></h2>
+        <p><span class="ar-text">استشارتك الأولى مجانية. دعنا نساعدك!</span><span class="en-text">Your first consultation is free. Let's help!</span></p>
+        <a href="https://wa.me/966556422948" class="cta-white"><span class="ar-text">📱 اتصل بنا</span><span class="en-text">📱 Contact Us</span></a>
     </div>
 
-    <section id="contact" class="contact-section">
-        <div style="max-width: 1400px; margin: 0 auto;">
-            <h2 class="section-title"><span class="ar-text">تواصل معنا</span><span class="en-text">Get in Touch</span></h2>
-            <p class="section-subtitle"><span class="ar-text">نحن هنا للإجابة</span><span class="en-text">We're here to help</span></p>
-            <div class="contact-methods">
-                <div class="contact-method">
-                    <div style="font-size: 2rem;">☎️</div>
-                    <p><span class="ar-text">اتصل أو واتساب</span><span class="en-text">Call or WhatsApp</span></p>
-                    <a href="tel:+966556422948">+966 55 642 2948</a>
-                </div>
-                <div class="contact-method">
-                    <div style="font-size: 2rem;">✉️</div>
-                    <p><span class="ar-text">بريد إلكتروني</span><span class="en-text">Email</span></p>
-                    <a href="mailto:legalcompasssa@gmail.com">legalcompasssa@gmail.com</a>
-                </div>
-                <div class="contact-method">
-                    <div style="font-size: 2rem;">💬</div>
-                    <p><span class="ar-text">واتساب</span><span class="en-text">WhatsApp</span></p>
-                    <a href="https://wa.me/966556422948"><span class="ar-text">اضغط هنا</span><span class="en-text">Click Here</span></a>
-                </div>
+    <section id="contact" class="section" style="background: white; text-align: center;">
+        <h2 class="section-title"><span class="ar-text">تواصل معنا</span><span class="en-text">Contact Us</span></h2>
+        <p class="section-subtitle"><span class="ar-text">نحن هنا لمساعدتك</span><span class="en-text">We're here to help</span></p>
+        <div class="contact-grid" style="max-width: 1000px; margin: 0 auto;">
+            <div class="contact-card">
+                <div style="font-size: 2rem;">☎️</div>
+                <p style="margin: 1rem 0; color: var(--gray);"><span class="ar-text">اتصل أو واتساب</span><span class="en-text">Call or WhatsApp</span></p>
+                <a href="tel:+966556422948">+966 55 642 2948</a>
+            </div>
+            <div class="contact-card">
+                <div style="font-size: 2rem;">✉️</div>
+                <p style="margin: 1rem 0; color: var(--gray);"><span class="ar-text">بريد إلكتروني</span><span class="en-text">Email</span></p>
+                <a href="mailto:legalcompasssa@gmail.com">legalcompasssa@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <div style="font-size: 2rem;">💬</div>
+                <p style="margin: 1rem 0; color: var(--gray);"><span class="ar-text">واتساب مباشر</span><span class="en-text">Direct WhatsApp</span></p>
+                <a href="https://wa.me/966556422948"><span class="ar-text">تواصل الآن</span><span class="en-text">Chat Now</span></a>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">LC · <span class="ar-text">البوصلة القانونية</span><span class="en-text">Legal Compass</span></div>
-            <p class="footer-text"><span class="ar-text">استشارات قانونية متخصصة في التقنية والفينتك والاستثمار</span><span class="en-text">Specialized legal consulting in technology, fintech & investment</span></p>
-        </div>
+        <div class="footer-logo">LC · <span class="ar-text">البوصلة القانونية</span><span class="en-text">Legal Compass</span></div>
+        <p class="footer-text"><span class="ar-text">استشارات قانونية متخصصة في التقنية والفينتك والاستثمار</span><span class="en-text">Specialized legal consulting in technology, fintech & investment</span></p>
         <div class="footer-bottom">
             <p>&copy; 2025 Legal Compass</p>
         </div>
     </footer>
 
     <script>
-        // Load language preference
-        const savedLang = localStorage.getItem('legalcompass_lang') || 'ar';
-        document.body.className = savedLang;
-        if (savedLang === 'en') {
-            document.getElementById('htmlRoot').classList.add('en');
-        }
+        // Load saved language
+        const lang = localStorage.getItem('lc_lang') || 'ar';
+        document.body.className = lang;
+        if (lang === 'en') document.getElementById('htmlRoot').classList.add('en');
 
-        function switchLanguage() {
-            const currentLang = document.body.className;
-            const newLang = currentLang === 'ar' ? 'en' : 'ar';
-            
+        function switchLang() {
+            const newLang = document.body.className === 'ar' ? 'en' : 'ar';
             document.body.className = newLang;
             document.getElementById('htmlRoot').classList.toggle('en', newLang === 'en');
-            localStorage.setItem('legalcompass_lang', newLang);
+            localStorage.setItem('lc_lang', newLang);
         }
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
+                if (this.getAttribute('href') !== '#') {
                     e.preventDefault();
-                    const target = document.querySelector(href);
+                    const target = document.querySelector(this.getAttribute('href'));
                     if (target) target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
@@ -824,8 +749,8 @@
 
         // Header shadow
         window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            header.style.boxShadow = window.scrollY > 10 ? '0 4px 12px rgba(0,0,0,0.08)' : 'none';
+            document.querySelector('header').style.boxShadow = 
+                window.scrollY > 10 ? '0 4px 12px rgba(0,0,0,0.08)' : 'none';
         });
     </script>
 </body>
